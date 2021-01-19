@@ -1,0 +1,15 @@
+// makeAnagram function.
+
+function makeAnagram($a, $b) {
+    $num =0;
+    $k = strlen($b);
+    for($i=0;$i<strlen($a);$i++){
+        $p = strpos($b, $a[$i]);
+        if($p || $p === 0){
+            $b[$p] = "1";
+            $num += 1;
+        }
+    }
+    return (strlen($a) + $k - 2*$num);
+
+}
