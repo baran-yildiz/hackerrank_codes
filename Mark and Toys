@@ -1,0 +1,20 @@
+<?php
+
+// maximumToys function.
+function maximumToys($prices, $k) {
+    $sum =0;
+    $toys = 0;
+    sort($prices);
+    for($i=0;$i<count($prices);$i++){
+        $sum = $sum + $prices[$i];
+        $toys += 1;
+        if($sum == $k){
+            break;
+        }elseif($sum > $k){
+            $toys -= 1;
+            break;
+        } 
+    }
+    return $toys;
+
+}
