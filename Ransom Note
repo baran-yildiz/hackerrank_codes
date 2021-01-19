@@ -1,0 +1,19 @@
+// checkMagazine function below.
+
+function checkMagazine($magazine, $note) {
+    
+    $outp = 0;   
+    for($i=0;$i<count($note);$i++){
+        $a = array_search($note[$i],$magazine,true);
+        if($a || $a === 0){  
+            array_splice($magazine,$a,1);  
+            $outp += 1;
+        }
+    }
+    if($outp == count($note)){
+       echo "Yes"; 
+    }else{
+        echo "No";
+    }
+    
+}
