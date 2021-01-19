@@ -1,13 +1,12 @@
-#include <bits/stdc++.h>
-#include <algorithm>
-using namespace std;
 
-int reverse(string k){
-       if(k.length()%2 == 0){
-           
-            for(int i = 0; i < k.length()/2; i++){
-                if(k[i] == k[k.length()-1-i]){
-                    if(i == (k.length()/2)-1){
+// Function for reversing String elements..
+
+reverse($k){
+       $length = strlen($k);
+       if($length %2 == 0){
+            for($i = 0; $i < $length/2; $i++){
+                if($k[i] == $k[$length-$i-1]){
+                    if($i == $length-1){
                         return 1;
                     }
                 }else{
@@ -17,9 +16,9 @@ int reverse(string k){
            
 
        }else{
-           for(int i = 0; i < (k.length()-1)/2; i++){
-               if(k[i] == k[k.length()-1-i]){
-                    if(i == ((k.length()-1)/2)-1){
+           for($i = 0; $i < ($length-1)/2; $i++){
+               if($k[$i] == $k[$length-1-$i]){
+                    if($i == (($length-1)/2)-1){
                         return 1;
                     }
                 }else{
@@ -29,92 +28,63 @@ int reverse(string k){
        }
        return 0;
 }
-vector<int> circularPalindromes(string s) {
-int m = s.length();    
-vector<int> v;
-int dnm, d1,d2,d3;
-d1 =0;
-d2 =0;
-for(int i=0;i<m;i++){
-    v.push_back(0);
+
+circularPalindromes($s) {
+
+$m = strlen($s);    
+$d1 =0;
+$d2 =0;
+$v = [];
+for($i=0;$i<$m;$i++){
+    array_push($v, 0);
 }
+
 //Checking first Palindrome and how many palindromes.. 
-for(int i = 0; i < m; i++){
-       for(int j = 1; j <= m-i; j++){
-        if(reverse(s.substr(i,j)) == 1){
-            if(j >= v[0]){
-                v[0] = j;
-                dnm = i;
+for($i = 0; $i < $m; $i++){
+       for($j = 1; $j <= $m-$i; $j++){
+        if(reverse(substr($s,$i,$j)) == 1){
+            if($j >= $v[0]){
+                $v[0] = $j;
+                $dnm = $i;
                 }
         }
        }    
     }    
-s.push_back(s[0]);
-s.erase(0,1);
-d1 =0;
-d2 =0;
-d3 =0;
-for(int l=1; l<m; l++){  
-   //for(int i = 0; i < dnm; i++){
-       if(dnm > 0){    
-           for(int h=0;h<m;h++){
-               if(reverse(s.substr(h,m-h)) == 1 && (m-h)>= v[l-1]){
-                v[l] = m-h;
-                dnm = h;
+array_push($s,$s[0]);
+str_replace($s,0,1);
+$d1 =0;
+$d2 =0;
+$d3 =0;
+for($l=1; $l<$m; $l++){
+       if($dnm > 0){    
+           for($h=0; $h<$m; $h++){
+               if(reverse(substr($s,$h,$m-$h)) == 1 && ($m-$h)>= $v[$l-1]){
+                $v[$l] = $m-$h;
+                $dnm = $h;
                 break;
-                /*
-                if(d2==1){
-                    d1 = 1;
-                    d3 = 1;    
-                }else{
-                    d1 = 1;
-                    d3 =0;
-                }    
-            */}
         }
-        if(v[l] < v[l-1]){
-            v[l] = v[l-1];
-            dnm = dnm - 1;
-            /*if(d1==0 && d2==0){
-                dnm = dnm-2;//bir sonra ki icin..
-            }else if(d1==0 && d2==1){
-                dnm = dnm-2;
-                d2 = 0;    
-            }else if(d1==1 && d2==0){
-                dnm = dnm-1;
-                d1 =0;
-                
-            }else if(d1==1 && d2==1 && d3==1){
-                dnm = dnm-1;
-                d1,d2,d3=0;
-            }else if(d1==1 && d2==1 && d3==0){
-                dnm = dnm-2;
-                d1=0;
-                d2=0;
-            }
-            */
-            //burada ki deneme nereden geliyor??
-            
+        if($v[$l] < $v[$l-1]){
+            $v[$l] = $v[$l-1];
+            $dnm = $dnm - 1;
         } 
-        s.push_back(s[0]);
-        s.erase(0,1);  
+        array_push($s,$s[0]);
+        str_replace($s,0,1);  
                
-    }else if(dnm <= 0){
-               for(int f = 0; f < m; f++){
-                   for(int n = 1; n <= m-f; n++){
-                    if(reverse(s.substr(f,n)) == 1){
-                        if(n > v[l]){
-                            v[l] = n; 
-                            dnm = f;//bir sonra ki dnm yazildi..
-                            d2 = 1;
+    }else if($dnm <= 0){
+               for($f = 0; $f < $m; $f++){
+                   for($n = 1; $n <= $m-$f; $n++){
+                    if(reverse(substr($s,$f,$n)) == 1){
+                        if($n > $v[l]){
+                            $v[l] = $n; 
+                            $dnm = $f;//bir sonra ki dnm yazildi..
+                            $d2 = 1;
                         }
                     }
                    }    
             }
-            s.push_back(s[0]);
-               s.erase(0,1);
-    }
-    cout << dnm << endl;        
+               array_push($s,$s[0]);
+               str_replace($s,0,1);
+    }        
     }
     return v;
 } 
