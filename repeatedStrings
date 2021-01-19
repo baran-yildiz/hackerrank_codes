@@ -1,0 +1,28 @@
+<?php
+
+// repeatedString function below.
+
+function repeatedString($s, $n) {
+    $o = 0; //output
+    $c = strlen($s);      // Number of letters in the string
+    $b = floor($n / $c);  // How many string in the n number of letters..
+    $k = $n % $c;         // Additional part of the string..
+    
+    for($i=0; $i<$c; $i++)
+    {
+        if($s[$i] == "a"){
+            $o = $o + 1;
+        }
+    }
+    
+    $o = $b*$o;
+    
+    for($i=0; $i<$k; $i++){
+        if($s[$i] == "a"){
+            $o = $o + 1;
+        }
+    }
+    
+    return $o;
+
+}
