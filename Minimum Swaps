@@ -1,0 +1,23 @@
+<?php
+
+// minimumSwaps function.
+function minimumSwaps($arr) {
+    $outp = 0;
+    $result = array_flip($arr);
+    print_r($arr);
+    for($i=0; $i<count($arr); $i++){
+       if($arr[$i] != $i +1){
+            $keyswp = $result[$i + 1];
+            $temp = $arr[$i];
+            $arr[$i] = $i + 1;
+            $arr[$keyswp] = $temp; 
+            $tempr = $result[$i + 1];
+            $result[$i + 1] = $i +1;
+            $result[$temp] = $keyswp;
+            $outp = $outp + 1;
+        } 
+    }
+    print_r($arr);
+    print_r($result);
+    return $outp;     
+}
